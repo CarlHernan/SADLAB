@@ -25,9 +25,9 @@
                     Bordered Tables
                 </div>
                 <div class="prism-toggle">
-                    <button type="button" class="ti-btn !py-1 !px-2 ti-btn-primary !font-medium !text-[0.75rem]">Add Users
+                    <a href="{{ route('users.create') }}" class="ti-btn !py-1 !px-2 ti-btn-primary !font-medium !text-[0.75rem]">Add Users
                         <i class="ri-user-add-line ms-2 inline-block align-middle"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
 
