@@ -39,7 +39,7 @@
                                 <tr class="border-b border-defaultborder">
                                     <th scope="col" class="text-start">Name</th>
                                     <th scope="col" class="text-start">Email</th>
-                                    <th scope="col" class="text-start">Created At</th>
+                                    <th scope="col" class="text-start">Status</th>
                                     <th scope="col" class="text-start">Action</th>
                                 </tr>
                             </thead>
@@ -53,7 +53,12 @@
                                         </td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $user->email }}</td>
                                         <td class="border border-gray-300 px-4 py-2">
-                                            {{ $user->created_at->format('Y-m-d H:i') }}</td>
+                                            @if($user->status == 1)
+                                                <span class="badge badge-success/10 text-success">Active</span>
+                                            @else
+                                                <span class="badge badge-danger/10 text-danger">Inactive</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <div class="hstack gap-2 flex-wrap">
                                                 <a aria-label="anchor" href="/profile"

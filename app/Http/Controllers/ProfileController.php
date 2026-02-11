@@ -64,4 +64,10 @@ class ProfileController extends Controller
         $users = \App\Models\User::all();
         return view('users.index', compact('users'));       
     }
+
+    //method to display create user form
+    public function create(): View
+    {
+        return view('users.create');   
+    }
 }

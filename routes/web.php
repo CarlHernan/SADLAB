@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Termwind\Components\Raw;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,7 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //route for user management
-    Route::get('/users', [ProfileController::class, 'index'])->name('users.index');
+    Route::get('users/index', [ProfileController::class, 'index'])->name('users.index');
+    Route::get('users/create', [ProfileController::class, 'create'])->name('users.create');
 });
 
 require __DIR__.'/auth.php';
