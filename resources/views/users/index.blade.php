@@ -9,11 +9,11 @@
                 <h5 class="page-title text-[1.3125rem] font-medium text-defaulttextcolor mb-0">Users</h5>
                 <nav>
                     <ol class="flex items-center whitespace-nowrap min-w-0">
-                        <li class="text-[12px]"> <a class="flex items-center text-primary hover:text-primary" href="/users">
+                        <li class="text-[12px]"> <a class="flex items-center text-primary hover:text-primary" href="{{ route('users.index') }}">
                                 Users <i
                                     class="ti ti-chevrons-right flex-shrink-0 mx-3 overflow-visible text-textmuted rtl:rotate-180"></i>
                             </a> </li>
-                        <li class="text-[12px]"> <a class="flex items-center text-textmuted" href="/users">Users
+                        <li class="text-[12px]"> <a class="flex items-center text-textmuted" href="{{route('users.index')}}">Index
                             </a> </li>
                     </ol>
                 </nav>
