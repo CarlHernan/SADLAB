@@ -1,7 +1,6 @@
-
 @extends('layouts.master')
 @section('title')
-    User Management | Create
+    User Management | Edit
 @endsection
 @section('content')
     <div class="xl:col-span-6 col-span-12">
@@ -15,7 +14,7 @@
                                     class="ti ti-chevrons-right flex-shrink-0 mx-3 overflow-visible text-textmuted rtl:rotate-180"></i>
                             </a> </li>
                         <li class="text-[12px]"> <a class="flex items-center text-primary hover:text-primary "
-                                href="{{ route('users.create') }}">Create
+                                href="javascript:void(0);">Edit
                             </a> </li>
                     </ol>
                 </nav>
@@ -27,7 +26,7 @@
                 <div class="box">
                     <div class="box-header flex justify-between">
                         <div class="box-title">
-                            Create User
+                            Edit User
                         </div>
                     </div>
                     @if ($errors->any())
@@ -39,21 +38,22 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="box-body">
                             <div class="grid grid-cols-12 sm:gap-6">
                                 <div class="xl:col-span-4 lf:col-span-6 md:col-span-6 sm:col-span-12 col-span-12">
                                     <label for="fullname" class="form-label !font-normal">Full Name</label>
-                                    <input type="text" class="form-control" id="fullname" name="fullname" value="{{ old('fullname') }}" required>
+                                    <input type="text" class="form-control" id="fullname" name="fullname" value="{{ old('fullname', $user->name) }}" required>
                                 </div>
                                 <div class="xl:col-span-4 lf:col-span-6 md:col-span-6 sm:col-span-12 col-span-12">
                                     <label for="email" class="form-label !mb-2">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email) }}" required>
                                 </div>
                                 <div class="xl:col-span-4 lf:col-span-6 md:col-span-6 sm:col-span-12 col-span-12">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control placeholder:text-textmuted" id="password" name="password" required>
+                                    <label for="password" class="form-label">Password <span class="text-sm text-muted font-normal">(Leave blank to keep current)</span></label>
+                                    <input type="password" class="form-control placeholder:text-textmuted" id="password" name="password">
                                 </div>
                                 <div class="xl:col-span-4 lf:col-span-6 md:col-span-6 sm:col-span-12 col-span-12">
                                     <label for="birthdate" class="form-label">Birthdate</label>
@@ -73,7 +73,7 @@
                         <div class="box-footer border-t-0">
                             <div class="flex justify-end">
                                 <button type="submit" class="ti-btn ti-btn-primary">
-                                    Add User
+                                    Update User
                                 </button>
                             </div>
                         </div>

@@ -9,12 +9,8 @@
                 <h5 class="page-title text-[1.3125rem] font-medium text-defaulttextcolor mb-0">Users</h5>
                 <nav>
                     <ol class="flex items-center whitespace-nowrap min-w-0">
-                        <li class="text-[12px]"> <a class="flex items-center text-primary hover:text-primary" href="{{ route('users.index') }}">
-                                Users <i
-                                    class="ti ti-chevrons-right flex-shrink-0 mx-3 overflow-visible text-textmuted rtl:rotate-180"></i>
-                            </a> </li>
-                        <li class="text-[12px]"> <a class="flex items-center text-textmuted" href="{{route('users.index')}}">Index
-                            </a> </li>
+                        <li class="text-[12px]"> <a class="flex items-center  text-primary hover:text-primary" href="{{ route('users.index') }}">
+                                Users</a> </li>
                     </ol>
                 </nav>
             </div>
@@ -30,6 +26,12 @@
                     </a>
                 </div>
             </div>
+
+            @if (session('success'))
+                <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                    <span class="font-medium">Success!</span> {{ session('success') }}
+                </div>
+            @endif
 
             @if ($users->count())
                 <div class="box-body">
@@ -48,7 +50,7 @@
                                     <tr class="hover:bg-gray-50">
                                         <td class="border border-gray-300 px-4 py-2">
                                             <span class="avatar avatar-xs me-2 online avatar-rounded">
-                                                <img src="backend/assets/images/faces/13.jpg" alt="img">
+                                                <img src="{{ asset('backend/assets/images/faces/13.jpg') }}" alt="img">
                                             </span> {{ $user->name }}
                                         </td>
                                         <td class="border border-gray-300 px-4 py-2">{{ $user->email }}</td>
@@ -61,12 +63,15 @@
                                         </td>
                                         <td>
                                             <div class="hstack gap-2 flex-wrap">
-                                                <a aria-label="anchor" href="/profile"
+                                                <a aria-label="anchor" href="{{ route('users.edit', $user->id) }}"
                                                     class="text-info text-[.875rem] leading-none"><i
                                                         class="ri-edit-line"></i></a>
-                                                <a aria-label="anchor" href="javascript:void(0);"
-                                                    class="text-danger text-[.875rem] leading-none"><i
-                                                        class="ri-delete-bin-5-line"></i></a>
+                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" aria-label="anchor" class="text-danger text-[.875rem] leading-none border-0 bg-transparent"><i
+                                                            class="ri-delete-bin-5-line"></i></button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
