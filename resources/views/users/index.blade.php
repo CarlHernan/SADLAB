@@ -42,6 +42,7 @@
                                     <th scope="col" class="text-start">Name</th>
                                     <th scope="col" class="text-start">Email</th>
                                     <th scope="col" class="text-start">Status</th>
+                                    <th scope="col" class="text-start">Date Registered</th>
                                     <th scope="col" class="text-start">Action</th>
                                 </tr>
                             </thead>
@@ -61,6 +62,7 @@
                                                 <span class="badge badge-danger/10 text-danger">Inactive</span>
                                             @endif
                                         </td>
+                                        <td class="border border-gray-300 px-4 py-2">{{ $user->created_at -> format('Y-m-d') }}</td>
                                         <td>
                                             <div class="hstack gap-2 flex-wrap">
                                                 <a aria-label="anchor" href="{{ route('users.edit', $user->id) }}"

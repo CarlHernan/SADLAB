@@ -17,7 +17,10 @@ class UserController extends Controller
      */
     public function index(): View
     {
-        $users = User::latest()->get();
+        $users = User::where('status', true)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
         return view('users.index', compact('users'));
     }
 
